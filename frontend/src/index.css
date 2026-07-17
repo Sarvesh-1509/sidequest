@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+body {
+  background-color: #f9fafb; /* This gives us that very light gray SaaS background */
+}

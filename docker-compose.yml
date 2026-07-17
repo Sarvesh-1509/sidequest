@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:15
+    container_name: sidequest_db
+    environment:
+      POSTGRES_USER: sidequest_user
+      POSTGRES_PASSWORD: sidequest_password
+      POSTGRES_DB: sidequest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  spring-backend:
+    build: ./backend
+    container_name: sidequest_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-db
+    restart: unless-stopped
+
+  react-frontend:
+    build: ./frontend
+    container_name: sidequest_frontend
+    ports:
+      - "5173:80" # Maps your computer's 5173 port to Nginx's internal port 80
+    depends_on:
+      - spring-backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
