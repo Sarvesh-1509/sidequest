@@ -1,26 +1,69 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CreateGoal from './pages/CreateGoal';
-import MyGoals from './pages/MyGoals';             // <-- NEW
-import CreateChallenge from './pages/CreateChallenge'; // <-- NEW
+import MyGoals from './pages/MyGoals';
+import CreateChallenge from './pages/CreateChallenge';
 import Analytics from './pages/Analytics';
+
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-goal" element={<CreateGoal />} />
 
-        {/* NEW ROUTES */}
-        <Route path="/goals" element={<MyGoals />} />
-        <Route path="/create-challenge/:goalId" element={<CreateChallenge />} />
-        <Route path="/analytics" element={<Analytics />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create-goal"
+          element={
+            <ProtectedRoute>
+              <CreateGoal />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/goals"
+          element={
+            <ProtectedRoute>
+              <MyGoals />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/create-challenge/:goalId"
+          element={
+            <ProtectedRoute>
+              <CreateChallenge />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
   );
