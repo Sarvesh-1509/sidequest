@@ -99,22 +99,22 @@ function Analytics() {
         <div className="min-h-screen bg-gray-50 font-sans">
             
             {/* Top Navigation Bar */}
-            <nav className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm">
-                <div className="flex items-center space-x-8">
+            <nav className="bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex flex-col sm:flex-row justify-between items-center shadow-sm gap-4">
+                <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 w-full sm:w-auto">
                     {/* Logo (Clickable) */}
                     <div onClick={() => navigate('/dashboard')} className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition">
                         <span className="text-2xl">⚔️</span>
                         <h1 className="text-xl font-bold text-indigo-900 tracking-tight">SideQuest</h1>
                     </div>
                     {/* Navigation Buttons (Moved to left) */}
-                    <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-4 sm:space-x-6 w-full sm:w-auto justify-center">
                         <button onClick={() => navigate('/dashboard')} className="text-gray-600 hover:text-indigo-600 font-medium transition">Dashboard</button>
                         <button onClick={() => navigate('/goals')} className="text-gray-600 hover:text-indigo-600 font-medium transition">My Goals</button>
                         <button onClick={() => navigate('/analytics')} className="text-indigo-600 font-semibold transition">Analytics</button>
                     </div>
                 </div>
                 {/* User Info & Logout (Kept on right) */}
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-4 sm:space-x-6">
                     <button onClick={handleLogout} className="text-gray-500 hover:text-red-500 transition flex items-center space-x-1">
                         <span>Logout</span>
                     </button>
@@ -131,7 +131,7 @@ function Analytics() {
                 </div>
 
                 {/* High-Level Stat Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8">
                     <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col justify-center">
                         <span className="text-gray-500 text-sm font-medium">Completed Quests</span>
                         <div className="flex items-baseline space-x-1 mt-1">
@@ -268,10 +268,10 @@ function Analytics() {
                                     {data.recentCompletions?.map(item => {
                                         const styles = getDifficultyStyles(item.difficulty);
                                         return (
-                                            <li key={item.id} className="flex justify-between items-center p-4 border border-gray-100 rounded-lg hover:border-indigo-100 transition bg-white shadow-sm">
+                                            <li key={item.id} className="flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-start sm:items-center p-4 border border-gray-100 rounded-lg hover:border-indigo-100 transition bg-white shadow-sm">
                                                 <div>
                                                     <strong className="text-gray-900 text-base block">{item.title}</strong>
-                                                    <div className="flex items-center space-x-2.5 mt-1 text-xs text-gray-500">
+                                                    <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-gray-500">
                                                         <span className="bg-gray-100 px-2 py-0.5 rounded text-gray-600">{item.goalTitle}</span>
                                                         <span className={`px-2 py-0.5 rounded border text-[10px] font-bold ${styles.badge} ${styles.text}`}>
                                                             {item.difficulty}

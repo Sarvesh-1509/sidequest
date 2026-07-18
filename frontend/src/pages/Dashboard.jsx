@@ -48,24 +48,24 @@ function Dashboard() {
         <div className="min-h-screen bg-gray-50 font-sans">
 
             {/* Top Navigation Bar */}
-            <nav className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm">
-                <div className="flex items-center space-x-8">
+            <nav className="bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex flex-col sm:flex-row justify-between items-center shadow-sm gap-4">
+                <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-8 w-full sm:w-auto">
                     {/* Logo (Clickable) */}
                     <div onClick={() => navigate('/dashboard')} className="flex items-center space-x-2 cursor-pointer hover:opacity-80 transition">
                         <span className="text-2xl">⚔️</span>
                         <h1 className="text-xl font-bold text-indigo-900 tracking-tight">SideQuest</h1>
                     </div>
                     {/* Navigation Buttons (Moved to left) */}
-                    <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-4 sm:space-x-6 w-full sm:w-auto justify-center">
                         <button onClick={() => navigate('/dashboard')} className="text-indigo-600 font-semibold transition">Dashboard</button>
                         <button onClick={() => navigate('/goals')} className="text-gray-600 hover:text-indigo-600 font-medium transition">My Goals</button>
                         <button onClick={() => navigate('/analytics')} className="text-gray-600 hover:text-indigo-600 font-medium transition">Analytics</button>
                     </div>
                 </div>
                 {/* User Info & Logout (Kept on right) */}
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-4 sm:space-x-6">
                     <span className="text-gray-700">Hello, <span className="font-semibold text-indigo-700">{dashboardData?.name}</span></span>
-                    <div className="h-6 w-px bg-gray-300"></div>
+                    <div className="h-6 w-px bg-gray-300 hidden sm:block"></div>
                     <button onClick={handleLogout} className="text-gray-500 hover:text-red-500 transition flex items-center space-x-1">
                         <span>Logout</span>
                     </button>
@@ -75,14 +75,14 @@ function Dashboard() {
             {/* Main Content */}
             <main className="max-w-5xl mx-auto mt-10 px-6">
 
-                <div className="flex justify-between items-end mb-8">
+                <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-end gap-4 mb-8">
                     <div>
                         <h2 className="text-3xl font-bold text-gray-900">Dashboard</h2>
                         <p className="text-gray-500 mt-1">Track your progress and complete today's challenges.</p>
                     </div>
                     <button
                         onClick={() => navigate('/create-goal')}
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium shadow-sm transition"
+                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium shadow-sm transition w-full sm:w-auto"
                     >
                         + Create Goal
                     </button>
@@ -136,7 +136,7 @@ function Dashboard() {
                         ) : (
                             <ul className="space-y-4">
                                 {dashboardData?.todaysChallenges?.map(challenge => (
-                                    <li key={challenge.id} className="flex justify-between items-center p-4 border border-gray-100 rounded-lg hover:border-indigo-100 hover:shadow-sm transition bg-white">
+                                    <li key={challenge.id} className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-start sm:items-center p-4 border border-gray-100 rounded-lg hover:border-indigo-100 hover:shadow-sm transition bg-white">
                                         <div>
                                             <strong className="text-gray-900 text-lg block">{challenge.title}</strong>
                                             <div className="flex items-center space-x-3 mt-1 text-sm text-gray-500">

@@ -50,7 +50,7 @@ function CreateGoal() {
         <div className="min-h-screen bg-gray-50 pt-12 pb-24 px-4 font-sans">
             <div className="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-sm border border-gray-200">
 
-                <div className="flex justify-between items-center mb-8">
+                <div className="flex flex-col sm:flex-row gap-4 sm:justify-between items-start sm:items-center mb-8">
                     <h2 className="text-2xl font-bold text-gray-900">Create a New Goal 🎯</h2>
                     <button
                         onClick={() => navigate('/dashboard')}
@@ -99,7 +99,7 @@ function CreateGoal() {
                         />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
                             <select
